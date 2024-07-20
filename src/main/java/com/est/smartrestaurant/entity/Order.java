@@ -1,5 +1,6 @@
 package com.est.smartrestaurant.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,9 +22,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItem> orderItems;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus = OrderStatus.ORDER_REQUEST;
+    private OrderStatus orderStatus;
+
+    @Builder
+    private Order(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+        this.orderStatus = OrderStatus.ORDER_RECEIVED;
+    }
 }
