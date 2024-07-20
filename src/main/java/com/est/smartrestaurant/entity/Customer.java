@@ -31,11 +31,11 @@ public class Customer {
         this.address = address;
     }
 
-    public void updatePhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void updatePhoneNumber(String newPhoneNumber) {
+        this.phoneNumber = newPhoneNumber;
     }
 
-    public void updateAddress(String address) {
-        this.address = address;
+    public void updateAddress(String newAddress) {
+        this.address = newAddress;
     }
 }
