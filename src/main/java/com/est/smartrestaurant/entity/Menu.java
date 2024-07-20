@@ -9,8 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Getter
+@Entity(name = "menus")
 @NoArgsConstructor
 public class Menu {
 
@@ -34,19 +34,19 @@ public class Menu {
         this.description = description;
     }
 
-    public void updateName(String name) {
-        this.name = name;
+    public void updateName(String newName) {
+        this.name = newName;
     }
 
-    public void updateCategory(String category) {
-        this.category = category;
+    public void updateCategory(String newCategory) {
+        this.category = newCategory;
     }
 
-    public void updatePrice(Double price) {
-        this.price = price;
+    public void updatePrice(Double newPrice) {
+        this.price = newPrice;
     }
 
-    public void updateDescription(String description) {
-        this.description = description;
+    public void updateDescription(String newDescription) {
+        this.description = newDescription;
     }
 }
