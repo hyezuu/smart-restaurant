@@ -1,5 +1,6 @@
 package com.est.smartrestaurant.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,4 +26,28 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
+
+    @Column(nullable = false)
+    private Integer quantity;
+
+    public void setOrder(Order order) {
+        this.order = order;
+        if(!order.getOrderItems().contains(this)) {
+            order.getOrderItems().add(this);
+        }
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+        if(!order.getOrderItems().contains(this)) {
+            order.getOrderItems().add(this);
+        }
+    }
+
+    public void changeQuantity(Integer quantity) {
+        if(quantity == 0){
+            order.getOrderItems().remove(this);
+        }
+        else this.quantity = quantity;
+    }
 }
