@@ -20,16 +20,22 @@ public class Customer {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false, unique = true)
-    private String phone;
+    private String phoneNumber;
     @Column(nullable = false)
     private String address;
 
     @Builder
-    public Customer(String name, String phone, String address) {
+    private Customer(String name, String phoneNumber, String address) {
         this.name = name;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
-    public String changePhone
+    public void updatePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void updateAddress(String address) {
+        this.address = address;
+    }
 }
