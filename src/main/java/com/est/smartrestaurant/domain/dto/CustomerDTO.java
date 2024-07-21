@@ -1,0 +1,61 @@
+package com.est.smartrestaurant.domain.dto;
+
+import com.est.smartrestaurant.domain.entity.Customer;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public class CustomerDTO {
+
+    public record Post(
+        @NotBlank(message = "이름은 공백일 수 없습니다.")
+        String name,
+        @Pattern(regexp = "^010-\\d{3,4}-\\d{4}$",
+            message = "휴대폰 번호는 010으로 시작하는 11자리 숫자와 '-'로 구성되어야 합니다")
+        String phoneNumber,
+        @NotBlank(message = "주소는 공백일 수 없습니다.")
+        String address
+    ) {
+
+        public Customer toEntity() {
+            return Customer.builder()
+                .name(this.name)
+                .phoneNumber(this.phoneNumber)
+                .address(this.address)
+                .build();
+        }
+    }
+
+
+    public record Patch(
+        @Pattern(regexp = "^010-\\d{3,4}-\\d{4}$",
+            message = "휴대폰 번호는 010으로 시작하는 11자리 숫자와 '-'로 구성되어야 합니다")
+        String phoneNumber,
+        @NotBlank(message = "주소는 공백일 수 없습니다.")
+        String address
+    ) {
+
+        public Customer toEntity() {
+            return Customer.builder()
+                .phoneNumber(this.phoneNumber)
+                .address(this.address)
+                .build();
+        }
+    }
+
+    public record Response(
+        Long id,
+        String name,
+        String phoneNumber,
+        String address
+    ) {
+        public static Response from(Customer customer) {
+            return new Response(
+                customer.getId(),
+                customer.getName(),
+                customer.getPhoneNumber(),
+                customer.getAddress()
+            );
+        }
+    }
+
+}
