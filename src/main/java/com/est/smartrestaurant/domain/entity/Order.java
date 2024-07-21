@@ -1,4 +1,4 @@
-package com.est.smartrestaurant.entity;
+package com.est.smartrestaurant.domain.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
