@@ -31,15 +31,17 @@ public class Customer {
         this.address = address;
     }
 
-    public void updatePhoneNumber(String newPhoneNumber) {
+    public Customer updatePhoneNumber(String newPhoneNumber) {
         if(newPhoneNumber != null) {
             this.phoneNumber = newPhoneNumber;
         }
+        return this;
     }
 
-    public void updateAddress(String newAddress) {
+    public Customer updateAddress(String newAddress) {
         if(newAddress != null) {
             this.address = newAddress;
         }
+        return this;
     }
 }
