@@ -29,8 +29,8 @@ public class CustomerService {
             -> new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND_EXCEPTION));
     }
 
-    public Customer update(Customer newCustomer) {
-        Customer customerToUpdate = findById(newCustomer.getId());
+    public Customer update(Long id, Customer newCustomer) {
+        Customer customerToUpdate = findById(id);
 
         customerToUpdate
             .updatePhoneNumber(newCustomer.getPhoneNumber())
