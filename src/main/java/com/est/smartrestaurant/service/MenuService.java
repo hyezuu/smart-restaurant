@@ -25,8 +25,8 @@ public class MenuService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Menu> findAll(int page, int size) {
-        return menuRepository.findAll(PageRequest.of(page, size));
+    public Page<Menu> findAllByCategory(String category, int page, int size) {
+        return menuRepository.findAllByCategory(category, PageRequest.of(page, size));
     }
 
     @Transactional(readOnly = true)

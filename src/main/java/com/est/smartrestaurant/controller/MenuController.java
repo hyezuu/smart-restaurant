@@ -1,6 +1,7 @@
 package com.est.smartrestaurant.controller;
 
 import com.est.smartrestaurant.domain.dto.MenuDTO;
+import com.est.smartrestaurant.domain.entity.BaseTimeEntity;
 import com.est.smartrestaurant.service.MenuService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -8,7 +9,6 @@ import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -42,16 +42,17 @@ public class MenuController {
     }
 
     @GetMapping
-    public Page<MenuDTO.Response> getMenus
-        (@RequestParam(defaultValue = "0") int page,
+    public Page<MenuDTO.Response> getMenusByCategory
+        (@RequestParam String category,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return menuService.findAll(page, size).map(MenuDTO.Response::from);
+        return menuService.findAllByCategory(category, page, size).map(MenuDTO.Response::from);
     }
 
     @PatchMapping("/{id}")
     public MenuDTO.Response updateMenu(
         @PathVariable("id") @Positive Long id,
-        @RequestBody  @Valid MenuDTO.Patch patchDto) {
+        @RequestBody @Valid MenuDTO.Patch patchDto) {
         return MenuDTO.Response.from(menuService.update(id, patchDto.toEntity()));
     }
 
