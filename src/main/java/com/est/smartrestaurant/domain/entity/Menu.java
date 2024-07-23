@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity(name = "menus")
 @NoArgsConstructor
-public class Menu {
+public class Menu extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
