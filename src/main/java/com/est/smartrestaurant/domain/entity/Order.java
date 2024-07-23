@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity(name = "orders")
 @NoArgsConstructor
-public class Order {
+public class Order extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

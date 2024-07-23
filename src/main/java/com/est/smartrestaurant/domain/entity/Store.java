@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity(name = "stores")
 @NoArgsConstructor
-public class Store {
+public class Store extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
