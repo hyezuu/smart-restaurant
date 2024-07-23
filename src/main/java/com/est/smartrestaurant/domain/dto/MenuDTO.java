@@ -3,6 +3,7 @@ package com.est.smartrestaurant.domain.dto;
 import com.est.smartrestaurant.common.validation.NotSpace;
 import com.est.smartrestaurant.domain.entity.Menu;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class MenuDTO {
 
@@ -11,7 +12,7 @@ public class MenuDTO {
         String name,
         @NotBlank
         String category,
-        @NotBlank
+        @NotNull
         Double price,
         @NotBlank
         String description) {
