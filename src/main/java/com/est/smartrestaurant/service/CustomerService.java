@@ -26,7 +26,7 @@ public class CustomerService {
     @Transactional(readOnly = true)
     public Customer findById(Long id) {
         return customerRepository.findById(id).orElseThrow(()
-            -> new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND_EXCEPTION));
+            -> new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND));
     }
 
     public Customer update(Long id, Customer newCustomer) {
@@ -41,7 +41,7 @@ public class CustomerService {
 
     public void delete(Long id) {
         if (!customerRepository.existsById(id)) {
-            throw new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND_EXCEPTION);
+            throw new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND);
         }
         customerRepository.deleteById(id);
     }
