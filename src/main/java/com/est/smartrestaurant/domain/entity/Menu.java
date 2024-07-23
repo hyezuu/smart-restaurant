@@ -34,19 +34,31 @@ public class Menu {
         this.description = description;
     }
 
-    public void updateName(String newName) {
-        this.name = newName;
+    public Menu updateName(String newName) {
+        if(newName != null) {
+            this.name = newName;
+        }
+        return this;
     }
 
-    public void updateCategory(String newCategory) {
-        this.category = newCategory;
+    public Menu updateCategory(String newCategory) {
+        if(newCategory != null) {
+            this.category = newCategory;
+        }
+        return this;
     }
 
-    public void updatePrice(Double newPrice) {
-        this.price = newPrice;
+    public Menu updatePrice(Double newPrice) {
+        if(newPrice != null) {
+            this.price = newPrice;
+        }
+        return this;
     }
 
-    public void updateDescription(String newDescription) {
-        this.description = newDescription;
+    public Menu updateDescription(String newDescription) {
+        if(newDescription != null) {
+            this.description = newDescription;
+        }
+        return this;
     }
 }

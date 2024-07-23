@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Validated
-@RequestMapping
-@RestController("/customers")
+@RestController
+@RequestMapping("/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
@@ -28,9 +28,9 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<URI> createCustomer(@RequestBody CustomerDTO.Post postDto) {
-        Long Id = customerService.save(postDto.toEntity()).getId();
+        Long id = customerService.save(postDto.toEntity()).getId();
         URI uri = UriComponentsBuilder
-            .newInstance().path("/customer/{id}").buildAndExpand(Id).toUri();
+            .newInstance().path("/customer/{id}").buildAndExpand(id).toUri();
         return ResponseEntity.created(uri).build();
     }
 
