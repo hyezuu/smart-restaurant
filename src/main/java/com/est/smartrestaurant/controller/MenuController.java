@@ -1,8 +1,6 @@
 package com.est.smartrestaurant.controller;
 
 import com.est.smartrestaurant.domain.dto.MenuDTO;
-import com.est.smartrestaurant.domain.dto.MenuDTO.Response;
-import com.est.smartrestaurant.domain.entity.Menu;
 import com.est.smartrestaurant.service.MenuService;
 import jakarta.validation.constraints.Positive;
 import java.net.URI;
@@ -43,7 +41,9 @@ public class MenuController {
     }
 
     @GetMapping
-    public Page<MenuDTO.Response> getMenus(@RequestParam int page,@RequestParam int size) {
+    public Page<MenuDTO.Response> getMenus
+        (@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         return menuService.findAll(page, size).map(MenuDTO.Response::from);
     }
 
