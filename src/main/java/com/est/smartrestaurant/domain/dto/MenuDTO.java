@@ -4,10 +4,11 @@ import com.est.smartrestaurant.common.validation.NotSpace;
 import com.est.smartrestaurant.domain.entity.Menu;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 public class MenuDTO {
 
-    public record Post (
+    public record Post(
         @NotBlank
         String name,
         @NotBlank
@@ -17,7 +18,7 @@ public class MenuDTO {
         @NotBlank
         String description) {
 
-        public Menu toEntity(){
+        public Menu toEntity() {
             return Menu.builder()
                 .name(this.name)
                 .category(this.category)
@@ -26,7 +27,7 @@ public class MenuDTO {
         }
     }
 
-    public record Patch (
+    public record Patch(
         @NotSpace
         String name,
         @NotSpace
@@ -36,7 +37,7 @@ public class MenuDTO {
         @NotSpace
         String description) {
 
-        public Menu toEntity(){
+        public Menu toEntity() {
             return Menu.builder()
                 .name(this.name)
                 .category(this.category)
@@ -45,20 +46,25 @@ public class MenuDTO {
         }
     }
 
-    public record Response (
+    public record Response(
         Long id,
         String name,
         String category,
         Double price,
-        String description
-    ){
-        public static Response from(Menu menu){
+        String description,
+        LocalDateTime createdAt,
+        LocalDateTime modifiedAt
+    ) {
+
+        public static Response from(Menu menu) {
             return new Response(
                 menu.getId(),
                 menu.getName(),
                 menu.getCategory(),
                 menu.getPrice(),
-                menu.getDescription());
+                menu.getDescription(),
+                menu.getCreatedAt(),
+                menu.getModifiedAt());
         }
     }
 }
