@@ -49,7 +49,7 @@ public class Menu extends BaseTimeEntity{
     }
 
     public Menu updatePrice(Double newPrice) {
-        if(newPrice != null) {
+        if(newPrice !=null) {
             this.price = newPrice;
         }
         return this;

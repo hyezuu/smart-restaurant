@@ -4,6 +4,7 @@ import com.est.smartrestaurant.common.validation.NotSpace;
 import com.est.smartrestaurant.domain.entity.Menu;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 public class MenuDTO {
@@ -32,7 +33,7 @@ public class MenuDTO {
         String name,
         @NotSpace
         String category,
-        @NotSpace
+        @Positive
         Double price,
         @NotSpace
         String description) {
