@@ -1,8 +1,7 @@
 package com.est.smartrestaurant.service;
 
+import com.est.smartrestaurant.common.exception.BusinessLogicException;
 import com.est.smartrestaurant.common.exception.ExceptionCode;
-import com.est.smartrestaurant.common.exception.ResourceConflictException;
-import com.est.smartrestaurant.common.exception.ResourceNotFoundException;
 import com.est.smartrestaurant.domain.entity.Customer;
 import com.est.smartrestaurant.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class CustomerService {
 
     public Customer save(Customer customer) {
         if (customerRepository.existsByPhoneNumber(customer.getPhoneNumber())) {
-            throw new ResourceConflictException(ExceptionCode.CUSTOMER_ALREADY_EXISTS);
+            throw new BusinessLogicException(ExceptionCode.CUSTOMER_ALREADY_EXISTS);
         }
         return customerRepository.save(customer);
     }
@@ -26,7 +25,7 @@ public class CustomerService {
     @Transactional(readOnly = true)
     public Customer findById(Long id) {
         return customerRepository.findById(id).orElseThrow(()
-            -> new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND));
+            -> new BusinessLogicException(ExceptionCode.CUSTOMER_NOT_FOUND));
     }
 
     public Customer update(Long id, Customer newCustomer) {
@@ -41,7 +40,7 @@ public class CustomerService {
 
     public void delete(Long id) {
         if (!customerRepository.existsById(id)) {
-            throw new ResourceNotFoundException(ExceptionCode.CUSTOMER_NOT_FOUND);
+            throw new BusinessLogicException(ExceptionCode.CUSTOMER_NOT_FOUND);
         }
         customerRepository.deleteById(id);
     }
