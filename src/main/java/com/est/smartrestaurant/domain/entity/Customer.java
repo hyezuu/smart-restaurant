@@ -32,14 +32,14 @@ public class Customer {
     }
 
     public Customer updatePhoneNumber(String newPhoneNumber) {
-        if(newPhoneNumber != null) {
+        if (newPhoneNumber != null) {
             this.phoneNumber = newPhoneNumber;
         }
         return this;
     }
 
     public Customer updateAddress(String newAddress) {
-        if(newAddress != null) {
+        if (newAddress != null) {
             this.address = newAddress;
         }
         return this;
