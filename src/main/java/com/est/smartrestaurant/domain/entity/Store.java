@@ -31,15 +31,16 @@ public class Store extends BaseTimeEntity{
         this.address = address;
     }
 
-    public void updateName(String newName) {
-        this.name = newName;
-    }
-
-    public void updatePhoneNumber(String newPhoneNumber) {
-        this.phoneNumber = newPhoneNumber;
-    }
-
-    public void updateAddress(String newAddress) {
-        this.address = newAddress;
+    public Store update(Store newStore) {
+        if(newStore.getName() != null) {
+            this.name = newStore.getName();
+        }
+        if(newStore.getPhoneNumber() != null) {
+            this.phoneNumber = newStore.getPhoneNumber();
+        }
+        if(newStore.getAddress() != null) {
+            this.address = newStore.getAddress();
+        }
+        return this;
     }
 }

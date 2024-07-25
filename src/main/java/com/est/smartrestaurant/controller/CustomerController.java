@@ -30,7 +30,7 @@ public class CustomerController {
     public ResponseEntity<URI> createCustomer(@RequestBody CustomerDTO.Post postDto) {
         Long id = customerService.save(postDto.toEntity()).getId();
         URI uri = UriComponentsBuilder
-            .newInstance().path("/customer/{id}").buildAndExpand(id).toUri();
+            .newInstance().path("/customers/{id}").buildAndExpand(id).toUri();
         return ResponseEntity.created(uri).build();
     }
 
