@@ -1,11 +1,12 @@
 package com.est.smartrestaurant.controller;
 
 import com.est.smartrestaurant.domain.dto.MenuDTO;
-import com.est.smartrestaurant.domain.entity.BaseTimeEntity;
+import com.est.smartrestaurant.domain.dto.PopularMenuItemDTO;
 import com.est.smartrestaurant.service.MenuService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import java.net.URI;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,11 @@ public class MenuController {
         return menuService.findAllByCategory(category, page, size).map(MenuDTO.Response::from);
     }
 
+    @GetMapping("/rank")
+    public List<PopularMenuItemDTO> getMenuRank() {
+        return menuService.getPopularMenuItem();
+    }
+
     @PatchMapping("/{id}")
     public MenuDTO.Response updateMenu(
         @PathVariable("id") @Positive Long id,
@@ -56,7 +62,7 @@ public class MenuController {
         return MenuDTO.Response.from(menuService.update(id, patchDto.toEntity()));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMenu(@PathVariable("id") @Positive Long id) {
         menuService.delete(id);
         return ResponseEntity.noContent().build();

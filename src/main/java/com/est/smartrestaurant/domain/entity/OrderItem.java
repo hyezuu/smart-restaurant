@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,12 +24,20 @@ public class OrderItem extends BaseTimeEntity{
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @Getter
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
     @Column(nullable = false)
     private Integer quantity;
+
+    @Builder
+    private OrderItem(Order order, Menu menu, Integer quantity) {
+        this.order = order;
+        this.menu = menu;
+        this.quantity = quantity;
+    }
 
     public void setOrder(Order order) {
         this.order = order;

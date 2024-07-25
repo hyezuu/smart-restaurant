@@ -44,4 +44,8 @@ public class Customer extends BaseTimeEntity{
         }
         return this;
     }
+
+    public Customer(Long id) {
+        this.id = id;
+    }
 }

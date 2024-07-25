@@ -43,4 +43,8 @@ public class Store extends BaseTimeEntity{
         }
         return this;
     }
+
+    public Store(Long id) {
+        this.id = id;
+    }
 }

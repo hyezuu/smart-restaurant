@@ -61,4 +61,8 @@ public class Menu extends BaseTimeEntity{
         }
         return this;
     }
+
+    public Menu(Long id) {
+        this.id = id;
+    }
 }

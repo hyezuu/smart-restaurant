@@ -1,62 +1,47 @@
 package com.est.smartrestaurant.domain.dto;
 
-import com.est.smartrestaurant.common.validation.NotSpace;
+import com.est.smartrestaurant.domain.entity.Customer;
+import com.est.smartrestaurant.domain.entity.Order;
 import com.est.smartrestaurant.domain.entity.Store;
-import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderDTO {
-    public record Post(
-        @NotBlank
-        String name,
-        @NotBlank
-        String phoneNumber,
-        @NotBlank
-        String address) {
 
-        public Store toEntity() {
-            return Store.builder()
-                .name(this.name)
-                .phoneNumber(this.phoneNumber)
-                .address(this.address)
-                .build();
-        }
-    }
+    public record Request(
+        Long storeId,
+        Long customerId,
+        List<OrderItemDTO.Request> orderItems
+    ) {
 
-    public record Patch(
-        @NotSpace
-        String name,
-        @NotSpace
-        String phoneNumber,
-        @NotSpace
-        String address) {
-
-        public Store toEntity() {
-            return Store.builder()
-                .name(this.name)
-                .phoneNumber(this.phoneNumber)
-                .address(this.address)
+        public Order toEntity() {
+            return Order.builder()
+                .store(new Store(storeId))
+                .customer(new Customer(customerId))
+                .orderItems(this.orderItems.stream()
+                    .map(OrderItemDTO.Request::toEntity).toList())
                 .build();
         }
     }
 
     public record Response(
-        Long id,
-        String name,
-        String phoneNumber,
-        String address,
-        LocalDateTime createdAt,
-        LocalDateTime modifiedAt
+        Long orderId,
+        String storeName,
+        String customerName,
+        List<OrderItemDTO.Response> orderItems,
+        double totalPrice,
+        LocalDateTime orderDate
     ) {
-
-        public static Response from(Store store) {
+        static Response from(Order order) {
             return new Response(
-                store.getId(),
-                store.getName(),
-                store.getPhoneNumber(),
-                store.getAddress(),
-                store.getCreatedAt(),
-                store.getModifiedAt());
+                order.getId(), order.getStore().getName(),
+                order.getCustomer().getName(),
+                order.getOrderItems().stream().map(OrderItemDTO.Response::from).toList(),
+                order.getTotalPrice(),
+                order.getCreatedAt()
+            );
         }
     }
+
 }
+

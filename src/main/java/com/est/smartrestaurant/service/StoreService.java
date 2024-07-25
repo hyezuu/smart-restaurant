@@ -29,6 +29,7 @@ public class StoreService {
             -> new BusinessLogicException(ExceptionCode.STORE_NOT_FOUND));
     }
 
+
     public Store update(Long id, Store newStore) {
         Store store = findById(id);
 
