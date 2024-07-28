@@ -4,6 +4,7 @@ import com.est.smartrestaurant.common.validation.NotSpace;
 import com.est.smartrestaurant.domain.entity.Customer;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CustomerDTO {
@@ -49,8 +50,8 @@ public class CustomerDTO {
         String name,
         String phoneNumber,
         String address,
-        LocalDateTime createdAt,
-        LocalDateTime modifiedAt
+        LocalDate createdAt,
+        LocalDate modifiedAt
     ) {
 
         public static Response from(Customer customer) {

@@ -1,6 +1,7 @@
 package com.est.smartrestaurant.domain.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -37,6 +38,7 @@ public class Order extends BaseTimeEntity {
     private List<OrderItem> orderItems;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "order_status", length = 50) // 적절한 길이 설정
     private OrderStatus orderStatus = OrderStatus.ORDER_RECEIVED;
 
     private double totalPrice;

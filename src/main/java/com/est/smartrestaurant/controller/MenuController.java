@@ -1,7 +1,9 @@
 package com.est.smartrestaurant.controller;
 
 import com.est.smartrestaurant.domain.dto.MenuDTO;
+import com.est.smartrestaurant.domain.dto.MenuDTO.Response;
 import com.est.smartrestaurant.domain.dto.PopularMenuItemDTO;
+import com.est.smartrestaurant.domain.entity.Menu;
 import com.est.smartrestaurant.service.MenuService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -38,8 +40,8 @@ public class MenuController {
     }
 
     @GetMapping("/{id}")
-    public MenuDTO.Response getMenuById(@PathVariable("id") @Positive Long id) {
-        return MenuDTO.Response.from(menuService.findById(id));
+    public Response getMenuById(@PathVariable("id") @Positive Long id) {
+        return Response.from(menuService.findById(id));
     }
 
     @GetMapping
@@ -51,8 +53,8 @@ public class MenuController {
     }
 
     @GetMapping("/rank")
-    public List<PopularMenuItemDTO> getMenuRank() {
-        return menuService.getPopularMenuItem();
+    public Page<MenuDTO.Response> getMenuRank() {
+        return menuService.getPopularMenus().map(MenuDTO.Response::from);
     }
 
     @PatchMapping("/{id}")

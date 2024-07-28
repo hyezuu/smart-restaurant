@@ -2,14 +2,10 @@ package com.est.smartrestaurant.service;
 
 import com.est.smartrestaurant.common.exception.BusinessLogicException;
 import com.est.smartrestaurant.common.exception.ExceptionCode;
-import com.est.smartrestaurant.domain.dto.PopularMenuItemDTO;
 import com.est.smartrestaurant.domain.entity.Menu;
 import com.est.smartrestaurant.repository.MenuRepository;
 import com.est.smartrestaurant.repository.OrderItemRepository;
-import com.est.smartrestaurant.repository.OrderRepository;
-import com.est.smartrestaurant.repository.PopularMenuItemProjection;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,13 +38,9 @@ public class MenuService {
             -> new BusinessLogicException(ExceptionCode.MENU_NOT_FOUND));
     }
 
-    public List<PopularMenuItemDTO> getPopularMenuItem() {
-        List<PopularMenuItemProjection> popularItems = orderItemRepository.findPopularMenuItems();
-        return popularItems.stream()
-            .map(item -> new PopularMenuItemDTO(
-                item.getMenuItemId(),
-                item.getTotalQuantity()))
-            .collect(Collectors.toList());
+    @Transactional(readOnly = true)
+    public Page<Menu> getPopularMenus() {
+        return orderItemRepository.findPopularMenus(PageRequest.of(0, 3));
     }
 
     public Menu update(Long id, Menu newMenu){

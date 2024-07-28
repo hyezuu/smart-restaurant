@@ -3,6 +3,7 @@ package com.est.smartrestaurant.domain.dto;
 import com.est.smartrestaurant.domain.entity.Customer;
 import com.est.smartrestaurant.domain.entity.Order;
 import com.est.smartrestaurant.domain.entity.Store;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class OrderDTO {
         String customerName,
         List<OrderItemDTO.Response> orderItems,
         double totalPrice,
-        LocalDateTime orderDate
+        LocalDate orderDate
     ) {
         static Response from(Order order) {
             return new Response(

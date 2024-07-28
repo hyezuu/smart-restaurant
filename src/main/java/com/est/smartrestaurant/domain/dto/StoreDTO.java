@@ -3,6 +3,7 @@ package com.est.smartrestaurant.domain.dto;
 import com.est.smartrestaurant.common.validation.NotSpace;
 import com.est.smartrestaurant.domain.entity.Store;
 import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class StoreDTO {
@@ -45,8 +46,8 @@ public class StoreDTO {
         String name,
         String phoneNumber,
         String address,
-        LocalDateTime createdAt,
-        LocalDateTime modifiedAt
+        LocalDate createdAt,
+        LocalDate modifiedAt
     ) {
 
         public static Response from(Store store) {

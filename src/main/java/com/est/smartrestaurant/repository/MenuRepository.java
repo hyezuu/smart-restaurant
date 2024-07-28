@@ -1,6 +1,7 @@
 package com.est.smartrestaurant.repository;
 
 import com.est.smartrestaurant.domain.entity.Menu;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -5,6 +5,7 @@ import com.est.smartrestaurant.domain.entity.Menu;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MenuDTO {
@@ -53,8 +54,8 @@ public class MenuDTO {
         String category,
         Double price,
         String description,
-        LocalDateTime createdAt,
-        LocalDateTime modifiedAt
+        LocalDate createdAt,
+        LocalDate modifiedAt
     ) {
 
         public static Response from(Menu menu) {
