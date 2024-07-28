@@ -1,0 +1,49 @@
+### 주문 생성
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "storeId": 1,
+  "customerId": 2,
+  "orderItems": [
+    {
+      "menuId": 2,
+      "quantity": 3
+    },
+    {
+      "menuId": 3,
+      "quantity": 4
+    }
+  ]
+}
+
+### 주문 수정
+PUT http://localhost:8080/orders/1
+Content-Type: application/json
+
+{
+  "storeId": 1,
+  "customerId": 1,
+  "orderItems": [
+    {
+      "menuId": 1,
+      "quantity": 3
+    },
+    {
+      "menuId": 3,
+      "quantity": 1
+    }
+  ]
+}
+
+### 주문 총액 검색 (모든 파라미터 사용)
+GET http://localhost:8080/orders/search/total?storeId=1&startDate=2023-01-01&endDate=2023-12-31
+
+### 주문 총액 검색 (storeId만 사용)
+GET http://localhost:8080/orders/search/total?storeId=1
+
+### 주문 총액 검색 (날짜 범위만 사용)
+GET http://localhost:8080/orders/search/total?startDate=2023-01-01&endDate=2023-12-31
+
+### 주문 총액 검색 (파라미터 없음)
+GET http://localhost:8080/orders/search/total

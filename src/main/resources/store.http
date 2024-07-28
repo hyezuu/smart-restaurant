@@ -1,0 +1,45 @@
+### 매장 생성
+POST http://localhost:8080/stores
+Content-Type: application/json
+
+{
+  "name": "맛있는 피자",
+  "phoneNumber": "02-1234-5678",
+  "address": "서울시 강남구 테헤란로 123"
+}
+
+### 매장 조회
+GET http://localhost:8080/stores/1
+
+### 매장 정보 수정
+PATCH http://localhost:8080/stores/1
+Content-Type: application/json
+
+{
+  "name": "더 맛있는 피자",
+  "phoneNumber": "02-9876-5432",
+  "address": "서울시 강남구 역삼로 456"
+}
+
+### 매장 삭제
+DELETE http://localhost:8080/stores/1
+
+### 추가 매장 생성 1
+POST http://localhost:8080/stores
+Content-Type: application/json
+
+{
+  "name": "신선한 파스타",
+  "phoneNumber": "02-2222-3333",
+  "address": "서울시 서초구 서초대로 789"
+}
+
+### 추가 매장 생성 2
+POST http://localhost:8080/stores
+Content-Type: application/json
+
+{
+  "name": "건강한 샐러드",
+  "phoneNumber": "02-4444-5555",
+  "address": "서울시 송파구 올림픽로 321"
+}

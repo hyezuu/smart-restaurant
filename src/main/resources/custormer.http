@@ -1,0 +1,63 @@
+### 고객 생성
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "홍길동",
+  "phoneNumber": "010-1234-5678",
+  "address": "서울시 강남구 테헤란로 123"
+}
+
+### 고객 조회
+GET http://localhost:8080/customers/1
+
+### 고객 정보 수정
+PATCH http://localhost:8080/customers/1
+Content-Type: application/json
+
+{
+  "phoneNumber": "010-9876-5432",
+  "address": "서울시 서초구 서초대로 456"
+}
+
+### 고객 삭제
+DELETE http://localhost:8080/customers/1
+
+### 추가 고객 생성 1
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "김철수",
+  "phoneNumber": "010-2222-3333",
+  "address": "경기도 성남시 분당구 판교로 789"
+}
+
+### 추가 고객 생성 2
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "이영희",
+  "phoneNumber": "010-4444-5555",
+  "address": "서울시 송파구 올림픽로 321"
+}
+
+### 유효하지 않은 전화번호로 고객 생성 (에러 케이스)
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "name": "박문수",
+  "phoneNumber": "01-1234-5678",
+  "address": "서울시 중구 세종대로 110"
+}
+
+### 이름이 없는 고객 생성 (에러 케이스)
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "phoneNumber": "010-1111-2222",
+  "address": "서울시 종로구 종로 1"
+}

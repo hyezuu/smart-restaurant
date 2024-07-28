@@ -1,0 +1,63 @@
+### 메뉴 1: 마르게리타 피자 생성
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "name": "마르게리타 피자",
+  "category": "PIZZA",
+  "price": 15000.0,
+  "description": "신선한 모짜렐라, 토마토, 바질이 토핑된 클래식 이탈리안 피자"
+}
+
+### 메뉴 2: 페퍼로니 피자 생성
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "name": "페퍼로니 피자",
+  "category": "PIZZA",
+  "price": 16000.0,
+  "description": "풍미 있는 페퍼로니가 듬뿍 올라간 미국식 피자"
+}
+
+### 메뉴 3: 파스타 알라 볼로네제 생성
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "name": "파스타 알라 볼로네제",
+  "category": "PASTA",
+  "price": 13000.0,
+  "description": "진한 미트소스와 파마산 치즈가 어우러진 클래식 이탈리안 파스타"
+}
+
+### 메뉴 4: 시저 샐러드 생성
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "name": "시저 샐러드",
+  "category": "SALAD",
+  "price": 9000.0,
+  "description": "신선한 로메인 상추, 크루통, 파마산 치즈, 시저 드레싱이 조화롭게 어우러진 샐러드"
+}
+
+### 메뉴 5: 티라미수 생성
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "name": "티라미수",
+  "category": "DESSERT",
+  "price": 7000.0,
+  "description": "부드러운 마스카포네 치즈와 에스프레소를 적신 레이디핑거의 완벽한 조화"
+}
+
+### 모든 메뉴 조회
+GET http://localhost:8080/menus
+
+### 카테고리별 메뉴 조회 (예: PIZZA)
+GET http://localhost:8080/menus?category=PIZZA&page=0&size=10
+
+### 인기 메뉴 조회
+GET http://localhost:8080/menus/rank
